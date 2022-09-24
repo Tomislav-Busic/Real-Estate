@@ -1,5 +1,6 @@
-var sectionForSale = document.getElementById('sale_section_id');
-
+let sectionForSale = document.getElementById('sale_section_id');
+let input = document.getElementById('input_search_id');
+let items = [];
 
 
 
@@ -13,17 +14,7 @@ var sectionForSale = document.getElementById('sale_section_id');
     }
 
     
-})
-
-input.addEventListener("input", (e) => {
-    let value = e.target.value.toLowerCase();
-
-    const filtered = items.filter( item =>
-        item.name.toLowerCase().includes(value)
-        
-    )
-    Display(filtered);
-}); */
+})*/
 
 const options = {
 	method: 'GET',
@@ -33,11 +24,11 @@ const options = {
 	}
 };
 
-async function Start(){
+async function fetchData(){
     try{
         const response = await fetch('https://real-estate12.p.rapidapi.com/listings/sale?state=CA&city=Los%20Angeles&page=1&sort=relevant&type=single-family%2Cmulti-family', options)
         const data = await response.json();
-        /* items = data.results;*/ 
+        items = data.properties; 
         DisplayForSale(data.properties)  
         console.log(data.properties)
     } catch(e){
@@ -45,21 +36,43 @@ async function Start(){
     }
 } 
 
+input.addEventListener("input", (e) => {
+    let value = e.target.value.toLowerCase();
+
+    const filtered = items.filter( item =>
+        item.location.address.line.toLowerCase().includes(value)   
+    );
+
+    DisplayForSale(filtered);
+});
+
 
 const DisplayForSale = (data) => {
      let products = data?.map((item) => { 
                  template_sale_data = template_sale_data_id.innerHTML;
 
-                 let replaceData = [
-                 template_sale_data = template_sale_data.replaceAll('${primary_photo}', item['primary_photo']['href']),
-                 template_sale_data = template_sale_data.replaceAll('${status}', item['status']),
-                ];
+                
+                 template_sale_data = template_sale_data.replaceAll('${primary_photo}', item['primary_photo']['href']);
+                 template_sale_data = template_sale_data.replaceAll('${branding}', item['branding'][0]['name']);
+                 template_sale_data = template_sale_data.replaceAll('${status}', item['status'] === 'for_sale' ? 'For Sale' : '');
+                 template_sale_data = template_sale_data.replaceAll('${address}', item['location']['address']['line']);
+                 template_sale_data = template_sale_data.replaceAll('${postal_code}', item['location']['address']['postal_code']);
+                 template_sale_data = template_sale_data.replaceAll('${state}', item['location']['address']['state']);
+                 template_sale_data = template_sale_data.replaceAll('${year_built}', item['description']['year_built']);
+                 template_sale_data = template_sale_data.replaceAll('${baths}', item['description']['baths']);
+                 template_sale_data = template_sale_data.replaceAll('${beds}', item['description']['beds']);
+                 template_sale_data = template_sale_data.replaceAll('${garage}', item['description']['garage']);
+                 template_sale_data = template_sale_data.replaceAll('${list_price}', item['list_price']);
+                
 
-                return replaceData;
-     });
-     
+                return template_sale_data;
+                
+     }).join('');
+
      //Insert template into sale section
      sectionForSale.innerHTML = products;
 }
 
-Start();
+
+//initalization
+fetchData();

@@ -27,7 +27,7 @@
     <!-- sale section -->
     <section>
         <div class="inputs">
-            <input type="text" placeholder="Search by City" />
+            <input type="text" placeholder="Search by Street" id="input_search_id"/>
             <select id="opcije">
                 <option value="All">All</option>
             </select>
@@ -53,8 +53,17 @@
                     <img src="${primary_photo}"/>
                 </div>
                 <div class="details">
-                    <h5>${status}</h5>
-                    <button onclick="details(this)">More</button>
+                    <h4>${branding}</h4>
+                    <ul>
+                        <li><p><b>status:</b> ${status}</p></li>
+                        <li><p><b>address:</b> ${address}</p></li>
+                        <li><p><b>postal code:</b> ${postal_code}</p></li>
+                        <li><p><b>state:</b> ${state}</p></li>
+                        <li><p><b>year built:</b> ${year_built}</p></li>
+                        <li><p><b>description:</b> bathrooms:${baths}, bedrooms:${beds}, garage:${garage}</p></li>
+                        <li><p><b>price:</b> ${list_price}$</p></li>
+                    </ul>
+                    <button onclick="details(this)">Details</button>
                 </div>
             </div>
           

@@ -6,6 +6,7 @@
 
 html{
     font-family: sans-serif;
+    color: #333;
 }
 
 body {
@@ -196,16 +197,22 @@ footer .copyright h4{
 
 .item{
     margin: 1rem 0.5rem;
-    height: 15rem;
-    width: 30rem;
+    height: 19rem;
+    width: 35rem;
     display: flex;
     flex-wrap: wrap;
     border: 2px solid #333;
+    border-radius: 1rem;
     list-style: none;
 }
 
 .item .image{
     width: 40%;
+    height: 100%;
+}
+
+.item .image img{
+    width: 100%;
     height: 100%;
 }
 
@@ -215,12 +222,25 @@ footer .copyright h4{
     padding: 1rem;
 }
 
-.item .image img{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+.item .details ul{
+    padding: 1rem 0 0.5rem 0;
 }
+
+.item .details ul li{
+    padding: 0.2rem 0;
+    list-style: none;
+}
+
+.item .details button{
+    float: right;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
 
 @media (max-width: 900px){
     header{
