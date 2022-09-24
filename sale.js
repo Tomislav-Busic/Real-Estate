@@ -1,20 +1,25 @@
 let sectionForSale = document.getElementById('sale_section_id');
+
 let input = document.getElementById('input_search_id');
+let optionsForSale = document.getElementById('options_id');
 let items = [];
 
 
 
-/* optionsI.addEventListener('change', (e) => {
+optionsForSale.addEventListener('change', (e) => {
     let value = e.target.value;
     if(value === 'All'){
-        Display(items);
-    } else{
-        const filtered = items.filter(item => item.name.includes(value));
-        Display(filtered)
-    }
-
-    
-})*/
+        DisplayForSale(items);
+    } else if(value === 'lower_price'){
+        const filteredByLower = items.sort((a,b) => 
+        a.list_price - b.list_price);
+        DisplayForSale(filteredByLower)
+    } else if(value === 'higher_price'){
+        const filteredByHigher = items.sort((a,b) => 
+        b.list_price - a.list_price);
+        DisplayForSale(filteredByHigher)
+    }  
+})
 
 const options = {
 	method: 'GET',
@@ -51,7 +56,6 @@ const DisplayForSale = (data) => {
      let products = data?.map((item) => { 
                  template_sale_data = template_sale_data_id.innerHTML;
 
-                
                  template_sale_data = template_sale_data.replaceAll('${primary_photo}', item['primary_photo']['href']);
                  template_sale_data = template_sale_data.replaceAll('${branding}', item['branding'][0]['name']);
                  template_sale_data = template_sale_data.replaceAll('${status}', item['status'] === 'for_sale' ? 'For Sale' : '');
@@ -64,7 +68,6 @@ const DisplayForSale = (data) => {
                  template_sale_data = template_sale_data.replaceAll('${garage}', item['description']['garage']);
                  template_sale_data = template_sale_data.replaceAll('${list_price}', item['list_price']);
                 
-
                 return template_sale_data;
                 
      }).join('');
