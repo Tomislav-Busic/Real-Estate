@@ -8,6 +8,8 @@
     <title>Real Estate, Properties for Sale</title>
 </head>
 <body>
+
+    <!-- header -->
     <header>
         <h1>Properties for Sale</h1>
 
@@ -17,26 +19,49 @@
                 <li><a href="sale.html">for Sale</a></li>
                 <li><a href="rent.html">for Rent</a></li>
             </ul>
-            <div class="menu-btn">
-                <button>MENU</button>
-            </div>
+            
+            <button id="menu_btn_id">MENU</button>
         </div>
     </header>
+
+    <!-- sale section -->
     <section>
         <div class="inputs">
-            <input type="text" placeholder="Search the product" />
+            <input type="text" placeholder="Search by City" />
             <select id="opcije">
                 <option value="All">All</option>
-                <option value="ASOS DESIGN">ASOS DESIGN</option>
-                <option value="Puma">Puma</option>
-                <option value="Fred Perry">Fred Perry</option>
             </select>
         </div>
+        
+        <!-- place for template -->
+        <div class="items" id="sale_section_id"></div>
+
     </section>
+
+    <!-- footer -->
     <footer>
-        <div class="footer"></div>
+        <div class="copyright">
+            <h4 id="copy_footer_id">Copyright &copy; </h4> 
+        </div>
     </footer>
 
+    <!-- templates -->
+    <template id="template_sale_data_id">
+        
+            <div class="item">
+                <div class="image">
+                    <img src="${primary_photo}"/>
+                </div>
+                <div class="details">
+                    <h5>${status}</h5>
+                    <button onclick="details(this)">More</button>
+                </div>
+            </div>
+          
+    </template>
+
+    <!-- scripts -->
     <script src="script.js"></script>
+    <script src="sale.js"></script>
 </body>
 </html>

@@ -31,7 +31,7 @@ footer{
     height: 3rem;
     width: 100%;
     position: fixed;
-    background-color: crimson;
+    background-color: #333;
 }
 
 header{
@@ -40,11 +40,17 @@ header{
     justify-content: space-between;
 }
 
+header h1{
+    color: #fff;
+}
+
 section{
     padding: 4rem 1rem;
     width: 100%;
     max-width: 1600px;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -54,19 +60,21 @@ footer{
     bottom: 0;
 }
 
+footer .copyright h4{
+    color: #fff;
+}
+
+/*Menu style*/
 .menu{
     padding: 0.5rem 1rem;
     display: flex;
     flex-direction: row;
 }
 
-.menu .menu-btn{
+#menu_btn_id{
     display: none;
-}
-
-.menu .menu-btn button{
     background: none;
-    color: #333;
+    color: #fff;
     border: none;
     font-weight: bolder;
     font-size: 1rem;
@@ -74,8 +82,8 @@ footer{
     transition: 0.5s ease-in-out;
 }
 
-.menu .menu-btn button:hover{
-    color: #fff;
+#menu_btn_id:hover{
+    color: crimson;
 }
 
 .menu ul{
@@ -90,16 +98,17 @@ footer{
 
 .menu ul li a{
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-size: 1.2rem;
     font-weight: bolder;
     transition: 0.5s ease-in-out;
 }
 
 .menu ul li a:hover{
-    color: #fff;
+    color: crimson;
 }
 
+/*Home style*/
 .heading-home{
     margin-bottom: 4rem;
 }
@@ -122,26 +131,67 @@ footer{
 }
 
 .home-choice:hover{
-    transform: scale(1.1);   
+    transform: scale(1.1);  
+    background-color: crimson; 
+}
+
+.home-choice:hover i,
+.home-choice:hover h1{
+    color: #fff;
 }
 
 .home-choice i{
     margin-bottom: 1rem;
     font-size: 5rem;
     color: crimson;
+    transition: 0.5s ease-in-out;
 }
 
 .home-choice h1{
     text-align: center;
+    transition: 0.5s ease-in-out;
 }
 
-input{
+/*Filters style*/
+.inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.inputs input{
+    margin: 1rem;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.3rem;
     background-color: #222;
-    color: crimson;
+    color: #fff;
     font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.inputs select{
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: #222;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/*Items style*/
+.items{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .item{
@@ -150,18 +200,26 @@ input{
     width: 30rem;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #fff;
+    border: 2px solid #333;
+    list-style: none;
 }
 
 .item .image{
-    width: 30%;
+    width: 40%;
     height: 100%;
 }
 
 .item .details {
-    width: 70%;
+    width: 60%;
     height: 100%;
-    text-align: center;
+    padding: 1rem;
+}
+
+.item .image img{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 @media (max-width: 900px){
@@ -170,14 +228,14 @@ input{
     }
 }
 
-@media (max-width: 700px){
+@media (max-width: 780px){
     header{
     padding: 0.5rem 2rem;
     }
     header h1{
         font-size: 1.5rem;
     }
-    .menu .menu-btn{
+    #menu_btn_id{
         display: block;
     }
     header .menu ul{
@@ -193,5 +251,11 @@ input{
     }
     header .menu ul li a{
         color: crimson;
+    }
+    .home-choice h1{
+        font-size: 1rem;
+    }
+    footer .footer h3{
+        font-size: 0.9rem;
     }
 }
