@@ -2,6 +2,7 @@ const menuBtn = document.getElementById('menu_btn_id');
 const menu = document.querySelector('.menu ul');
 
 let sectionForSale = document.getElementById('sale_section_id');
+let detailsSection = document.getElementById('details_section_id');
 
 let input = document.getElementById('input_search_id');
 let optionsForSale = document.getElementById('options_id');
@@ -50,7 +51,7 @@ async function fetchData(){
     }
 } 
 
-//Search by City name
+//Search with input by City name
 input.addEventListener("input", (e) => {
     let value = e.target.value.toLowerCase();
 
@@ -61,7 +62,7 @@ input.addEventListener("input", (e) => {
     DisplayForSale(filtered);
 });
 
-//Sorting by criteria
+//Sorting with options by criteria
 optionsForSale.addEventListener('change', (e) => {
     let value = e.target.value;
 
@@ -124,6 +125,7 @@ const DisplayForSale = (data) => {
 
                  template_sale_data = template_sale_data_id.innerHTML;
 
+                 template_sale_data = template_sale_data.replaceAll('${property_id}', item['property_id']);
                  template_sale_data = template_sale_data.replaceAll('${primary_photo}', item?.['photo'] ? item['photo'] : 'https://image.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg');
                  template_sale_data = template_sale_data.replaceAll('${branding}', item['office_name']);
                  template_sale_data = template_sale_data.replaceAll('${status}', item['prop_status'] === 'for_sale' ? 'For Sale' : '');
@@ -145,6 +147,24 @@ const DisplayForSale = (data) => {
      sectionForSale.innerHTML = products;
 } 
 
+//Fetching data details
+const itemDetails = async (btn) => {
+    let itemId = btn.parentElement.parentElement.getAttribute('data-id');
+     
+    try{
+        const response = await fetch(`https://realty-in-us.p.rapidapi.com/properties/detail?listing_id=608763437&prop_status=for_sale&property_id=${itemId}`, options)
+        const data = await response.json();   
+        console.log(data.listing);
+    } catch(e){
+        console.log(e)
+    }
+}
+
+const displayDetails = (item) => {
+    
+}
+
+
 //initalization
 fetchData();
 
@@ -154,17 +174,3 @@ fetchData();
 
 
 
-/* 
-Detail
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '3819bbdfbemsh728d704970277e1p165420jsn747a79b95703',
-		'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com'
-	}
-};
-
-fetch('https://realty-in-us.p.rapidapi.com/properties/detail?listing_id=608763437&prop_status=for_sale&property_id=4599450556', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err)); */

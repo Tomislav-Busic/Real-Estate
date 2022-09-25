@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="main.css">
     <title>Real Estate</title>
 </head>
 <body>
-
+    
     <!-- header -->
     <header>
         <h1>Real Estate</h1>
@@ -26,22 +24,9 @@
 
     <!-- sale section -->
     <section>
-        <div class="inputs">
-            <input type="text" placeholder="Search by City" id="input_search_id"/>
-
-            <select id="options_id">
-                <option value="All">All</option>
-                <option value="lower_price">Lower price</option>
-                <option value="higher_price">Higher price</option>
-                <option value="newly_built">Newly built</option>
-                <option value="condo">Condo</option>
-                <option value="single_family">Single Family</option>
-                <option value="multi_family">Multifamily</option>
-            </select>
-        </div>
         
         <!-- place for template -->
-        <div class="items" id="sale_section_id"></div>
+        <div class="items" id="details_section_id"></div>
 
     </section>
 
@@ -53,7 +38,7 @@
     </footer>
 
     <!-- templates -->
-    <template id="template_sale_data_id">
+    <template id="template_details_data_id">
         
             <div class="item" data-id="${property_id}">
                 <div class="image">
@@ -72,7 +57,7 @@
                         <li><p><b>description:</b> bathrooms:${baths}, bedrooms:${beds}</p></li>
                         <li><p><b>price:</b> <span style="color: crimson;">${price}</span></p></li>
                     </ul>
-                    <button onclick="itemDetails(this)">Details</button>
+                    
                 </div>
             </div>
           
