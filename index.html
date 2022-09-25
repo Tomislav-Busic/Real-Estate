@@ -17,8 +17,6 @@
         <div class="menu" id="menu_id">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="sale.html">for Sale</a></li>
-                <li><a href="rent.html">for Rent</a></li>
             </ul>
             
             <button id="menu_btn_id">MENU</button>
@@ -26,19 +24,25 @@
         </div>
     </header>
 
-    <!-- main section -->
-    <section id="main_section_id">
-        <h1 class="heading-home">Research market prices for buying or renting Real Estate</h1>
-        <div class="home-choices">
-            <div id="sale_id" class="home-choice">
-                <i class="fa-solid fa-house"></i>
-                <h1>Properties for Sale</h1>
-            </div>
-            <div id="rent_id" class="home-choice">
-                <i class="fa-solid fa-house"></i>
-                <h1>Properties for Rent</h1>
-            </div>
+    <!-- sale section -->
+    <section>
+        <div class="inputs">
+            <input type="text" placeholder="Search by City" id="input_search_id"/>
+
+            <select id="options_id">
+                <option value="All">All</option>
+                <option value="lower_price">Lower price</option>
+                <option value="higher_price">Higher price</option>
+                <option value="newly_built">Newly built</option>
+                <option value="condo">Condo</option>
+                <option value="single_family">Single Family</option>
+                <option value="multi_family">Multifamily</option>
+            </select>
         </div>
+        
+        <!-- place for template -->
+        <div class="items" id="sale_section_id"></div>
+
     </section>
 
     <!-- footer -->
@@ -47,6 +51,32 @@
             <h4 id="copy_footer_id">Copyright &copy; </h4> 
         </div>
     </footer>
+
+    <!-- templates -->
+    <template id="template_sale_data_id">
+        
+            <div class="item">
+                <div class="image">
+                    <img src="${primary_photo}"/>
+                </div>
+                <div class="details">
+                    <h4>${branding}</h4>
+                    <ul>
+                        <li><p><b>status:</b> ${status}</p></li>
+                        <li><p><b>state:</b> ${state}</p></li>
+                        <li><p><b>city:</b> ${city}</p></li>
+                        <li><p><b>address:</b> ${address}</p></li>
+                        <li><p><b>postal code:</b> ${postal_code}</p></li>
+                        <li><p><b>new construction:</b> ${is_new_construction}</p></li>
+                        <li><p><b>property type:</b> ${prop_type}</p></li>
+                        <li><p><b>description:</b> bathrooms:${baths}, bedrooms:${beds}</p></li>
+                        <li><p><b>price:</b> <span style="color: crimson;">${price}</span></p></li>
+                    </ul>
+                    <button onclick="details(this)">Details</button>
+                </div>
+            </div>
+          
+    </template>
 
     <!-- scripts -->
     <script src="script.js"></script>
