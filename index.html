@@ -43,6 +43,7 @@
         <!-- place for template -->
         <div class="items" id="sale_section_id"></div>
 
+        <div class="modal" id="details_section_id"></div>
     </section>
 
     <!-- footer -->
@@ -77,6 +78,32 @@
             </div>
           
     </template>
+
+    <!-- template modal-->
+    <template id="template_details_data_id">
+        
+        <div class="item" data-id="${property_id}">
+            <div class="image">
+                <img src="${primary_photo}"/>
+            </div>
+            <div class="details">
+                <h4>${branding}</h4>
+                <ul>
+                    <li><p><b>status:</b> ${status}</p></li>
+                    <li><p><b>state:</b> ${state}</p></li>
+                    <li><p><b>city:</b> ${city}</p></li>
+                    <li><p><b>address:</b> ${address}</p></li>
+                    <li><p><b>postal code:</b> ${postal_code}</p></li>
+                    <li><p><b>new construction:</b> ${is_new_construction}</p></li>
+                    <li><p><b>property type:</b> ${prop_type}</p></li>
+                    <li><p><b>description:</b> bathrooms:${baths}, bedrooms:${beds}</p></li>
+                    <li><p><b>price:</b> <span style="color: crimson;">${price}</span></p></li>
+                </ul>
+                
+            </div>
+        </div>
+      
+</template>
 
     <!-- scripts -->
     <script src="script.js"></script>

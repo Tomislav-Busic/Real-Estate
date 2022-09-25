@@ -4,6 +4,7 @@ const menu = document.querySelector('.menu ul');
 let sectionForSale = document.getElementById('sale_section_id');
 let detailsSection = document.getElementById('details_section_id');
 
+
 let input = document.getElementById('input_search_id');
 let optionsForSale = document.getElementById('options_id');
 let items = [];
@@ -147,27 +148,40 @@ const DisplayForSale = (data) => {
      sectionForSale.innerHTML = products;
 } 
 
+
+
 //Fetching data details
 const itemDetails = async (btn) => {
+    
     let itemId = btn.parentElement.parentElement.getAttribute('data-id');
      
     try{
         const response = await fetch(`https://realty-in-us.p.rapidapi.com/properties/detail?listing_id=608763437&prop_status=for_sale&property_id=${itemId}`, options)
-        const data = await response.json();   
-        console.log(data.listing);
+        const data = await response.json(); 
+        let item = data.listing; 
+        displayDetails(item); 
+        console.log(item);
+        
     } catch(e){
         console.log(e)
     }
-}
-
-const displayDetails = (item) => {
     
 }
+
+//Show details and open modal
+const displayDetails = (item) => {
+    template_details = template_details_data_id.innerHTML;
+
+    template_details = template_details.replaceAll('${branding}', item['address']['city']);
+
+    detailsSection.innerHTML = template_details; 
+    detailsSection.style.display = 'block';
+}
+
 
 
 //initalization
 fetchData();
-
 
 
 
