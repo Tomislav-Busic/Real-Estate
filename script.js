@@ -173,6 +173,7 @@ const displayDetails = (item) => {
     template_details = template_details_data_id.innerHTML;
 
     template_details = template_details.replaceAll('${branding}', item['address']['city']);
+    template_details = template_details.replaceAll('${photo}', item['photos'][0]['href']);
 
     detailsSection.innerHTML = template_details; 
     detailsSection.style.display = 'block';
