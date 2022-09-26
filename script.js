@@ -1,5 +1,5 @@
-const menuBtn = document.getElementById('menu_btn_id');
-const menu = document.querySelector('.menu ul');
+let menuBtn = document.getElementById('menu_btn_id');
+let menu = document.querySelector('.menu ul');
 
 let sectionForSale = document.getElementById('sale_section_id');
 let detailsSection = document.getElementById('details_section_id');
@@ -14,6 +14,7 @@ let items = [];
 let today = new Date;
 copy_footer_id.innerText += today.getFullYear();
 
+
 //Menu function open and close
 menuBtn.addEventListener("click", (e) => {
     if(e.target.innerText === "MENU"){
@@ -25,11 +26,13 @@ menuBtn.addEventListener("click", (e) => {
     }
 });
 
+
 //Close menu when scrolling
 window.addEventListener("scroll", () => {
     menuBtn.innerText = "MENU";
     menu.style.right = "-15rem";
 });
+
 
 //Fetching Data
 const options = {
@@ -48,9 +51,10 @@ async function fetchData(){
         DisplayForSale(data.listings);   
         console.log(data.listings);
     } catch(e){
-        console.log(e)
+        console.log('There was a problem: ', e)
     }
 } 
+
 
 //Search with input by City name
 input.addEventListener("input", (e) => {
@@ -63,7 +67,8 @@ input.addEventListener("input", (e) => {
     DisplayForSale(filtered);
 });
 
-//Sorting with options by criteria
+
+//Sorting options by criteria
 optionsForSale.addEventListener('change', (e) => {
     let value = e.target.value;
 
@@ -104,6 +109,7 @@ optionsForSale.addEventListener('change', (e) => {
     } 
 });
 
+
 //Type of property for each item
 const propType = (type) => {
     switch(type) {
@@ -118,7 +124,8 @@ const propType = (type) => {
             break;
     }
     return type;
-}
+};
+
 
 //Replace data in correct place
 const DisplayForSale = (data) => {
@@ -149,7 +156,6 @@ const DisplayForSale = (data) => {
 } 
 
 
-
 //Fetching data details
 const itemDetails = async (btn) => {
     
@@ -163,22 +169,45 @@ const itemDetails = async (btn) => {
         console.log(item);
         
     } catch(e){
-        console.log(e)
-    }
-    
-}
+        console.log('There was a problem: ', e)
+    }   
+};
+
 
 //Show details and open modal
 const displayDetails = (item) => {
     template_details = template_details_data_id.innerHTML;
 
-    template_details = template_details.replaceAll('${branding}', item['address']['city']);
-    template_details = template_details.replaceAll('${photo}', item['photos'][0]['href']);
+    template_details = template_details.replaceAll('${branding}', item['broker']['name']);
+    template_details = template_details.replaceAll('${photo}', item['photo_count'] > 0 ? item['photo']['href'] : 'https://image.shutterstock.com/image-vector/illustration-simple-house-isolated-on-260nw-1937900650.jpg');
+    template_details = template_details.replaceAll('${status}', item['prop_status'] === 'for_sale' ? 'For Sale' : '');
+    template_details = template_details.replaceAll('${price}', item['price']);
+    template_details = template_details.replaceAll('${prop_type}', propType(item['prop_type']));
+    template_details = template_details.replaceAll('${price}', item['price']);
+    template_details = template_details.replaceAll('${state}', item['address']['state']);
+    template_details = template_details.replaceAll('${city}', item['address']['city']);
+    template_details = template_details.replaceAll('${address}', item['address']['line']);
+    template_details = template_details.replaceAll('${postal_code}', item['address']['postal_code']);
+    template_details = template_details.replaceAll('${neighborhood}', item['neighborhood']);
+    template_details = template_details.replaceAll('${baths}', item['baths']);
+    template_details = template_details.replaceAll('${beds}', item['beds']);
+    template_details = template_details.replaceAll('${garage}', item?.['garage'] ? item['garage'] : ' No');
+    template_details = template_details.replaceAll('${year_built}', item['year_built']);
+    template_details = template_details.replaceAll('${agent_name}', item['agent']['name']);
+    template_details = template_details.replaceAll('${agent_office_name}', item['agent']['office_name']);
+    template_details = template_details.replaceAll('${agent_email}', item['agent']['email']);
+    template_details = template_details.replaceAll('${agent_number}', item['agent']['phone1']['number']);
+    template_details = template_details.replaceAll('${description}', item['description']);
+    template_details = template_details.replaceAll('${description_substr}', item['description']);
+
+
+     
+                            
+                             
 
     detailsSection.innerHTML = template_details; 
     detailsSection.style.display = 'block';
 }
-
 
 
 //initalization
