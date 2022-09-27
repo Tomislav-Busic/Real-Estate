@@ -164,7 +164,7 @@ const itemDetails = async (btn) => {
     try{
         const response = await fetch(`https://realty-in-us.p.rapidapi.com/properties/detail?listing_id=608763437&prop_status=for_sale&property_id=${itemId}`, options)
         const data = await response.json(); 
-        let item = data.listing; 
+        let item = data?.listing; 
         displayDetails(item); 
         console.log(item);
         
@@ -196,19 +196,54 @@ const displayDetails = (item) => {
     template_details = template_details.replaceAll('${agent_name}', item['agent']['name']);
     template_details = template_details.replaceAll('${agent_office_name}', item['agent']['office_name']);
     template_details = template_details.replaceAll('${agent_email}', item['agent']['email']);
-    template_details = template_details.replaceAll('${agent_number}', item['agent']['phone1']['number']);
+    template_details = template_details.replaceAll('${agent_number}', item?.['agent']?.['phone1']?.['number']);
+    template_details = template_details.replaceAll('${description_substr}', item['description'].substring(0,100));
     template_details = template_details.replaceAll('${description}', item['description']);
-    template_details = template_details.replaceAll('${description_substr}', item['description']);
 
-
-     
-                            
-                             
 
     detailsSection.innerHTML = template_details; 
     detailsSection.style.display = 'block';
 }
 
+
+//Show more or less description
+const showMore = (btn) => {
+
+    let mainEl = btn.closest('.description');
+    let showMoreDes = mainEl.querySelector('.more');
+    let showLessDes = mainEl.querySelector('.less');
+
+    if (btn.innerText === 'Show more') {
+        showLessDes.style.display = 'none';
+        showMoreDes.style.display = 'block';
+        btn.innerText = 'Read less'
+    } else {
+        showMoreDes.style.display = 'none';
+        showLessDes.style.display = 'block';
+        btn.innerText = 'Show more'
+    } 
+}
+
+//calculate the monthly installment
+const calcuRate = (btn) => {
+    let mainEl = btn.closest('.calc');
+    let yearsValue = mainEl.querySelector('input').value; 
+    let price = calc_price_id.innerText;
+    price = parseInt(price);
+
+    if(yearsValue > 0){
+        let month = yearsValue * 12;
+        let rate = price / month;
+
+        display_rate_id.innerText = `The monthly installment for ${yearsValue} years amounts to ${rate} $`;
+
+    } else{
+        display_rate_id.innerText = 'You must enter a quantity!'
+    }
+    
+    
+    
+}
 
 //initalization
 fetchData();

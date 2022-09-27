@@ -84,14 +84,18 @@
         
         <div class="item_details" data-id="${property_id}">
             <h1>${branding}</h1>
+
+            <!-- photo change-->
             <div class="image">
                 <img src="${photo}"/>
             </div>
+
+            <!-- details boxes -->
             <div class="details">
-                <h3>${status} - ${price}$</h3>
+                <h2><span style="color: crimson;">${status} - ${price}$</span></h2>
                 <div class="details-details">
                     <div class="details-box">
-                        <h4>Location:</h4>
+                        <h3>Address:</h3>
                         <ul>
                             <li><p><b>state:</b> ${state}</p></li>
                             <li><p><b>city:</b> ${city}</p></li>
@@ -101,19 +105,19 @@
                         </ul>
                     </div>
                     <div class="details-box">
-                        <h4>Details:</h4>
+                        <h3>Details:</h3>
                         <ul>
                             <li><p><b>status:</b> ${status}</p></li>
                             <li><p><b>property type:</b> ${prop_type}</p></li>
                             <li><p><b>bathrooms:</b> ${baths}</p></li>
                             <li><p><b>bedrooms:</b> ${beds}</p></li>
-                            <li><p><b>garage:</b>${garage}</p></li>
-                            <li><p><b>year built:</b>${year_built}</p></li>
+                            <li><p><b>garage:</b> ${garage}</p></li>
+                            <li><p><b>year built:</b> ${year_built}</p></li>
                             <li><p><b>price:</b> <span style="color: crimson;">${price}$</span></p></li>
                         </ul>
                     </div>
                     <div class="details-box">
-                        <h4>Contact:</h4>
+                        <h3>Contact:</h3>
                         <ul>
                             <li><p><b>agent:</b> ${agent_name}</p></li>
                             <li><p><b>office name:</b> ${agent_office_name}</p></li>
@@ -122,19 +126,31 @@
                         </ul>
                     </div>
                 </div>
-                <div class="description">
-                    <h3>Description</h3>
-                    <div class="show_description">
-                        <p>${description_substr}</p>
-                    </div>
-                    <div class="hide_description">
-                        <p>${description}</p>
-                    </div>
-                    <button>Show more</button>
+            </div>
+
+            <!-- description -->
+            <div class="description">
+                <h3>Description</h3>
+                <div class="text_description less">
+                    <p>${description_substr}...</p>
                 </div>
-                <div class="calc-rate">
-                    <h1>Rate</h1>
+                <div class="text_description more">
+                    <p>${description}</p>
                 </div>
+                <button onclick="showMore(this)">Show more</button>
+            </div>
+
+            <!-- monthly installment -->
+            <div class="calc-rate">
+                <h3>Calculating the monthly installment for <span>${branding} property</span></h3>
+                <h4>Please enter the year and calculate the monthly installment</h4>
+                <h4>Price: <span id="calc_price_id">${price}</span> $</h4>
+
+                <div class="calc">
+                  <input type="number" value="0" min="0" placeholder="Insert years">
+                  <button onclick="calcuRate(this)">Calculate</button>
+                </div>
+                <h3 id="display_rate_id"></h3>
             </div>
         </div>
       

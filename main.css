@@ -116,7 +116,7 @@ footer .copyright h4{
     flex-wrap: wrap;
     width: 100%;
     margin: 1rem;
-    padding: 1rem;
+    padding: 3rem 1rem;
 }
 
 .inputs input{
@@ -182,17 +182,21 @@ footer .copyright h4{
     padding: 1rem;
 }
 
+.item .details h4{
+    font-size: 1.3rem;
+}
+
 .item .details ul{
     padding: 1rem 0 0.5rem 0;
 }
 
 .item .details ul li{
-    padding: 0.2rem 0;
+    padding: 0.1rem 0;
     list-style: none;
 }
 
 .item .details ul li p{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .item .details button{
@@ -244,7 +248,10 @@ footer .copyright h4{
 }
 
 .item_details .image{
-    width: 100%;
+    width: 20rem;
+    border-top: 3px solid #333;
+    border-bottom: 3px solid #333;
+    border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,6 +260,7 @@ footer .copyright h4{
 .item_details .image img{
     width: 20rem;
     height: 20rem;
+    border-radius: 1rem;
 }
 
 .item_details .details{
@@ -263,7 +271,7 @@ footer .copyright h4{
     align-items: center;
 }
 
-.item_details .details h3{
+.item_details .details h2{
     padding: 2rem 0;
 }
 
@@ -284,20 +292,116 @@ footer .copyright h4{
     margin: 1rem;
 }
 
-.item_details .details .details-details .details-box h4{
+.item_details .details .details-details .details-box h3{
     padding-bottom: 1rem;
 }
 
 .item_details .details .details-details .details-box ul li{
     list-style: none;
+    padding-bottom: 0.3rem;
+    font-size: 1.1rem;
 }
 
+.item_details .description{
+    padding: 2rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.item_details .description h3{
+    padding-bottom: 1rem;
+}
 
+.item_details .description .text_description{
+    padding: 0rem 4rem 1rem 4rem;
+}
+
+.item_details .description div p{
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/*full description hide*/
+.item_details .description .more{
+    display: none;
+}
+
+.item_details .description button{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: #333;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.item_details .description button:hover{
+    color: crimson;
+}
+
+.item_details .calc-rate{
+    padding: 2rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item_details .calc-rate h3{
+    padding-bottom: 1rem;
+}
+
+.item_details .calc-rate h4{
+    padding-bottom: 1rem;
+}
+
+.item_details .calc-rate .calc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem 1rem;
+}
+
+.item_details .calc-rate .calc input{
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    width: 5rem;
+    border-radius: 0.3rem;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.item_details .calc-rate .calc button{
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: #333;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.item_details .calc-rate .calc input:hover,
+.item_details .calc-rate .calc button:hover{
+    color: crimson;
+}
 
 @media (max-width: 900px){
     header{
     padding: 0.5rem 4rem;
+    }
+    .item_details .description div{
+        padding: 0 1rem;
     }
 }
 
@@ -344,7 +448,13 @@ footer .copyright h4{
         flex: 100%;
     }
     .items .details ul{
-        padding-left: 3rem;
+        padding-left: 1rem;
+    }
+    .item_details .description div{
+        padding: 0 0.5rem;
+    }
+    .item_details .description .text_description{
+        padding: 0rem 0.5rem 1rem 0.5rem;
     }
     footer .footer h3{
         font-size: 0.9rem;
