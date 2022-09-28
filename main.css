@@ -247,7 +247,7 @@ footer .copyright h4{
     padding-bottom: 2rem;
 }
 
-.item_details .image{
+.item_details .image-slider .image{
     width: 20rem;
     border-top: 3px solid #333;
     border-bottom: 3px solid #333;
@@ -257,10 +257,39 @@ footer .copyright h4{
     align-items: center;
 }
 
-.item_details .image img{
+.item_details .image-slider .image img{
+    display: none;
     width: 20rem;
     height: 20rem;
     border-radius: 1rem;
+}
+
+.item_details .image-slider .image img:first-child{
+    display: block;
+}
+
+.item_details .image-slider .silder-buttons{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item_details .image-slider .silder-buttons button{
+    padding: 0.5rem 1rem;
+    margin: 0 2rem;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.item_details .image-slider .silder-buttons button:hover{
+    color: crimson;
 }
 
 .item_details .details{

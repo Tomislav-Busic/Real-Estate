@@ -4,10 +4,12 @@ let menu = document.querySelector('.menu ul');
 let sectionForSale = document.getElementById('sale_section_id');
 let detailsSection = document.getElementById('details_section_id');
 
-
 let input = document.getElementById('input_search_id');
 let optionsForSale = document.getElementById('options_id');
 let items = [];
+
+let pictures = undefined;
+let imgNum = 0;
 
 
 //Copyright and Date
@@ -76,6 +78,11 @@ optionsForSale.addEventListener('change', (e) => {
         case 'All':
             DisplayForSale(items);
             break;
+        case 'photo':
+            let filteredByPhoto = items.filter( item =>
+                item.photo_count !== 0);
+                DisplayForSale(filteredByPhoto);
+                break;
         case 'lower_price':
             let filteredByLower = items.sort((a,b) => 
             a.price_raw - b.price_raw);
@@ -201,8 +208,51 @@ const displayDetails = (item) => {
     template_details = template_details.replaceAll('${description}', item['description']);
 
 
+    // Insert template into main section and show details
     detailsSection.innerHTML = template_details; 
     detailsSection.style.display = 'block';
+
+
+    // Slider images - fetch all images
+    let photosHref = item?.photos;
+
+    photosHref.forEach(photo => {
+        image_id.innerHTML += `<img src="${photo?.href}"/>`
+    })
+
+    pictures = document.querySelectorAll('#image_id img');
+}
+
+
+// Slider images functions
+const left = () => {
+    hidePictures();
+
+    imgNum--;
+
+    if(imgNum === -1){
+        imgNum = pictures.length -1;
+    }
+
+    pictures[imgNum].style.display = 'block';
+}
+
+const right = () => {
+    hidePictures();
+
+    imgNum++;
+
+    if(imgNum === pictures.length){
+        imgNum = 0;
+    }
+
+    pictures[imgNum].style.display = 'block';
+}
+
+const hidePictures = () => {
+    pictures.forEach(pic => {
+        pic.style.display = 'none';
+    })
 }
 
 
@@ -224,6 +274,7 @@ const showMore = (btn) => {
     } 
 }
 
+
 //calculate the monthly installment
 const calcuRate = (btn) => {
     let mainEl = btn.closest('.calc');
@@ -239,11 +290,9 @@ const calcuRate = (btn) => {
 
     } else{
         display_rate_id.innerText = 'You must enter a quantity!'
-    }
-    
-    
-    
+    }   
 }
+
 
 //initalization
 fetchData();

@@ -31,6 +31,7 @@
 
             <select id="options_id">
                 <option value="All">All</option>
+                <option value="photo">With pictures</option>
                 <option value="lower_price">Lower price</option>
                 <option value="higher_price">Higher price</option>
                 <option value="newly_built">Newly built</option>
@@ -86,8 +87,15 @@
             <h1>${branding}</h1>
 
             <!-- photo change-->
-            <div class="image">
-                <img src="${photo}"/>
+            <div class="image-slider">
+                <div id="image_id" class="image">
+                    <img src="${photo}"/>
+                </div>
+                
+                <div class="silder-buttons">
+                    <button onclick="left()"><</button>
+                    <button onclick="right()">></button>
+                </div>
             </div>
 
             <!-- details boxes -->
@@ -147,7 +155,7 @@
                 <h4>Price: <span id="calc_price_id">${price}</span> $</h4>
 
                 <div class="calc">
-                  <input type="number" value="0" min="0" placeholder="Insert years">
+                  <input type="number" value="0" min="0">
                   <button onclick="calcuRate(this)">Calculate</button>
                 </div>
                 <h3 id="display_rate_id"></h3>
