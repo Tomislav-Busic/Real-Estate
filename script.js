@@ -204,8 +204,8 @@ const displayDetails = (item) => {
     template_details = template_details.replaceAll('${agent_office_name}', item['agent']['office_name']);
     template_details = template_details.replaceAll('${agent_email}', item['agent']['email']);
     template_details = template_details.replaceAll('${agent_number}', item?.['agent']?.['phone1']?.['number']);
-    template_details = template_details.replaceAll('${description_substr}', item['description'].substring(0,100));
-    template_details = template_details.replaceAll('${description}', item['description']);
+    template_details = template_details.replaceAll('${description_substr}', item?.['description']?.substring(0,100));
+    template_details = template_details.replaceAll('${description}', item?.['description']);
 
 
     // Insert template into main section and show details
